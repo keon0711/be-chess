@@ -1,4 +1,8 @@
 public class Pawn {
+
+    public static final String WHITE_COLOR = "white";
+    public static final String BLACK_COLOR = "black";
+
     private final String color;
 
     public Pawn(String color) {
@@ -6,7 +10,7 @@ public class Pawn {
     }
 
     public Pawn() {
-        this.color = "white";
+        this.color = WHITE_COLOR;
     }
 
     public String getColor() {
