@@ -18,17 +18,30 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("보드에 폰을 추가할 수 있다")
-    void create() {
+    @DisplayName("추가한 흰색 폰을 보드에서 얻을 수 있다")
+    void findWhitePawn() {
         Pawn white = new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
         board.addWhite(white);
-        assertThat(board.size()).isEqualTo(1);
         assertThat(board.findWhitePawn(0)).isEqualTo(white);
+    }
 
+    @Test
+    @DisplayName("추가한 검은색 폰을 보드에서 얻을 수 있다")
+    void findBlackPawn() {
         Pawn black = new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
         board.addBlack(black);
-        assertThat(board.size()).isEqualTo(2);
         assertThat(board.findBlackPawn(0)).isEqualTo(black);
+    }
+
+    @Test
+    @DisplayName("추가한 폰 개수를 얻을 수 있다.")
+    void getPawnsSize() {
+        Pawn white = new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
+        board.addWhite(white);
+        Pawn black = new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+        board.addBlack(black);
+
+        assertThat(board.size()).isEqualTo(2);
     }
 
     @Test
