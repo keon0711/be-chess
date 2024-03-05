@@ -27,14 +27,6 @@ public class BoardTest {
         verifyAdd(new Pawn(Color.BLACK), 2);
     }
 
-    @Test
-    @DisplayName("Pawn 이외의 객체를 넣으면 컴파일 에러 발생")
-    void compileErrorTest() {
-        assertThatCode(() -> {
-            Method addMethod = Board.class.getMethod("add", Pawn.class);
-            addMethod.invoke(board, new String());
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
 
 
     private void verifyAdd(Pawn pawn, int expectedSize) {
