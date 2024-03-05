@@ -84,4 +84,12 @@ public class Piece {
     public char getRepresentation() {
         return representation;
     }
+
+    public boolean isBlack() {
+        return color == Color.BLACK;
+    }
+
+    public boolean isWhite() {
+        return color == Color.WHITE;
+    }
 }
