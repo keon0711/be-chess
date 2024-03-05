@@ -1,26 +1,68 @@
 package chess.pieces;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PawnTest {
 
-    @Test
-    @DisplayName("흰색 폰이 생성되어야 한다")
-    void createWhitePawn() {
-        verifyPawn(Piece.createWhitePawn(), Color.WHITE, Piece.WHITE_REPRESENTATION);
+    @Nested
+    @DisplayName("흰색 폰을 생성하면")
+    class CreateWhitePawn {
+
+        Piece whitePawn;
+
+        @BeforeEach
+        void init() {
+            whitePawn = Piece.createWhitePawn();
+        }
+
+        @Test
+        @DisplayName("흰색이어야 한다.")
+        void whiteColor() {
+            verifyPawnColor(whitePawn, Color.WHITE);
+        }
+
+        @Test
+        @DisplayName("흰색 폰 심볼을 가져야한다.")
+        void whiteRepresentation() {
+            verifyPawnRepresentation(whitePawn, Piece.WHITE_REPRESENTATION);
+        }
     }
 
-    @Test
-    @DisplayName("검은색 폰이 생성되어야 한다")
-    void createBlackPawn() {
-        verifyPawn(Piece.createBlackPawn(), Color.BLACK, Piece.BLACK_REPRESENTATION);
+    @Nested
+    @DisplayName("검은색 폰을 생성하면")
+    class CreateBlackPawn {
+
+        Piece blackPawn;
+
+        @BeforeEach
+        void init() {
+            blackPawn = Piece.createBlackPawn();
+        }
+
+        @Test
+        @DisplayName("검은색이어야 한다.")
+        void whiteColor() {
+            verifyPawnColor(blackPawn, Color.BLACK);
+        }
+
+        @Test
+        @DisplayName("검은색 폰 심볼을 가져야한다.")
+        void whiteRepresentation() {
+            verifyPawnRepresentation(blackPawn, Piece.BLACK_REPRESENTATION);
+        }
     }
 
-    private void verifyPawn(final Piece pawn, final Color color, final char representation) {
+    private void verifyPawnColor(final Piece pawn, final Color color) {
         assertThat(pawn.getColor()).isEqualTo(color);
+
+    }
+
+    private void verifyPawnRepresentation(final Piece pawn, final char representation) {
         assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }
 }
