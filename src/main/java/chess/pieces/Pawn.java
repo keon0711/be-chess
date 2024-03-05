@@ -2,8 +2,8 @@ package chess.pieces;
 
 public class Pawn {
 
-    public static final char WHITE_REPRESENTATION = '♙';
-    public static final char BLACK_REPRESENTATION = '♟';
+    public static final char BLACK_REPRESENTATION = 'P';
+    public static final char WHITE_REPRESENTATION = 'p';
 
     private final Color color;
     private final char representation;
