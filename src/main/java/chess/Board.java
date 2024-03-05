@@ -51,14 +51,22 @@ public class Board {
 
 
     public void print() {
-        System.out.println(BLANK_ROW);
-        System.out.println(getBlackPawnsResult());
-        System.out.println(BLANK_ROW);
-        System.out.println(BLANK_ROW);
-        System.out.println(BLANK_ROW);
-        System.out.println(BLANK_ROW);
-        System.out.println(getWhitePawnsResult());
-        System.out.println(BLANK_ROW);
+        System.out.println(getBoard());
+    }
+
+    public String getBoard() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(BLANK_ROW).append('\n');
+        sb.append(getBlackPawnsResult()).append('\n');
+        sb.append(BLANK_ROW).append('\n');
+        sb.append(BLANK_ROW).append('\n');
+        sb.append(BLANK_ROW).append('\n');
+        sb.append(BLANK_ROW).append('\n');
+        sb.append(getWhitePawnsResult()).append('\n');
+        sb.append(BLANK_ROW).append('\n');
+
+        return sb.toString();
     }
 
     public String getWhitePawnsResult() {

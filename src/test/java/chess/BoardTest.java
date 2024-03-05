@@ -44,4 +44,12 @@ public class BoardTest {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
     }
+
+    @Test
+    @DisplayName("보드를 초기화한 결과를 출력할 수 있어야 한다.")
+    void printBoard() {
+        board.initialize();
+        System.out.println(board.getBoard());
+    }
+
 }
