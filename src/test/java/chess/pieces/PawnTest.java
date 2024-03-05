@@ -29,7 +29,7 @@ public class PawnTest {
         @Test
         @DisplayName("흰색 폰 심볼을 가져야한다.")
         void whiteRepresentation() {
-            verifyPawnRepresentation(whitePawn, Piece.WHITE_REPRESENTATION);
+            verifyPawnRepresentation(whitePawn, Piece.WHITE_PAWN_REPRESENTATION);
         }
     }
 
@@ -53,7 +53,7 @@ public class PawnTest {
         @Test
         @DisplayName("검은색 폰 심볼을 가져야한다.")
         void whiteRepresentation() {
-            verifyPawnRepresentation(blackPawn, Piece.BLACK_REPRESENTATION);
+            verifyPawnRepresentation(blackPawn, Piece.BLACK_PAWN_REPRESENTATION);
         }
     }
 
