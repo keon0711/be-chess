@@ -1,12 +1,12 @@
 package chess;
 
-import chess.pieces.Color;
 import chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static utils.StringUtils.appendNewLine;
 
 public class BoardTest {
 
@@ -63,6 +63,20 @@ public class BoardTest {
     void printBoard() {
         board.initialize();
         System.out.println(board.getBoard());
+    }
+
+    @Test
+    public void create() {
+        board.initialize();
+        assertThat(board.pieceCount()).isEqualTo(32);
+
+        String blankRank = appendNewLine(Board.BLACK_RANK);
+        assertThat(board.getBoard()).isEqualTo(
+                appendNewLine("RNBQKBNR") +
+                appendNewLine("PPPPPPPP") +
+                blankRank + blankRank + blankRank + blankRank +
+                appendNewLine("pppppppp") +
+                appendNewLine("rnbkqbnr"));
     }
 
 }
