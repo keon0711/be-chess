@@ -39,13 +39,13 @@ public class Board {
 
     private void initBlackPawn() {
         for (int i = 0; i < 8; i++) {
-            blackPawns.add(new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION));
+            addBlack(new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION));
         }
     }
 
     private void initWhitePawn() {
         for (int i = 0; i < 8; i++) {
-            whitePawns.add(new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION));
+            addWhite(new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION));
         }
     }
 
@@ -70,14 +70,16 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        StringBuilder sb = new StringBuilder();
-        whitePawns.forEach(pawn -> sb.append(pawn.getRepresentation()));
-        return sb.toString();
+        return getPawnsResult(whitePawns);
     }
 
     public String getBlackPawnsResult() {
+        return getPawnsResult(blackPawns);
+    }
+
+    private String getPawnsResult(List<Pawn> pawns) {
         StringBuilder sb = new StringBuilder();
-        blackPawns.forEach(pawn -> sb.append(pawn.getRepresentation()));
+        pawns.forEach(pawn -> sb.append(pawn.getRepresentation()));
         return sb.toString();
     }
 
