@@ -1,7 +1,7 @@
 package chess;
 
 import chess.pieces.Color;
-import chess.pieces.Pawn;
+import chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class BoardTest {
     @Test
     @DisplayName("추가한 흰색 폰을 보드에서 얻을 수 있다")
     void findWhitePawn() {
-        Pawn white = new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
+        Piece white = Piece.createWhitePawn();
         board.addWhite(white);
         assertThat(board.findWhitePawn(0)).isEqualTo(white);
     }
@@ -28,7 +28,7 @@ public class BoardTest {
     @Test
     @DisplayName("추가한 검은색 폰을 보드에서 얻을 수 있다")
     void findBlackPawn() {
-        Pawn black = new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+        Piece black = Piece.createBlackPawn();
         board.addBlack(black);
         assertThat(board.findBlackPawn(0)).isEqualTo(black);
     }
@@ -36,9 +36,9 @@ public class BoardTest {
     @Test
     @DisplayName("추가한 폰 개수를 얻을 수 있다.")
     void getPawnsSize() {
-        Pawn white = new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
+        Piece white = Piece.createWhitePawn();
         board.addWhite(white);
-        Pawn black = new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+        Piece black = Piece.createBlackPawn();
         board.addBlack(black);
 
         assertThat(board.size()).isEqualTo(2);
