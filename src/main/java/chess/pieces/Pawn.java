@@ -2,20 +2,17 @@ package chess.pieces;
 
 public class Pawn {
 
-    public static final String WHITE_COLOR = "white";
-    public static final String BLACK_COLOR = "black";
+    private final Color color;
 
-    private final String color;
-
-    public Pawn(String color) {
+    public Pawn(Color color) {
         this.color = color;
     }
 
     public Pawn() {
-        this.color = WHITE_COLOR;
+        this.color = Color.WHITE;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 }

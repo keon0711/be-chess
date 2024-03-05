@@ -10,23 +10,23 @@ public class PawnTest {
     @Test
     @DisplayName("흰색 폰이 생성되어야 한다")
     void createWhitePawn() {
-        verifyPawn(Pawn.WHITE_COLOR);
+        verifyPawn(Color.WHITE);
     }
 
     @Test
     @DisplayName("검은색 폰이 생성되어야 한다")
     void createBlackPawn() {
-        verifyPawn(Pawn.BLACK_COLOR);
+        verifyPawn(Color.BLACK);
     }
 
     @Test
     @DisplayName("기본 생성자는 흰색 폰을 생성해야 한다.")
     void defaultConstructor() {
         Pawn pawn = new Pawn();
-        assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE_COLOR);
+        assertThat(pawn.getColor()).isEqualTo(Color.WHITE);
     }
 
-    private void verifyPawn(final String color) {
+    private void verifyPawn(final Color color) {
 
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
