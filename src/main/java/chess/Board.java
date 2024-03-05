@@ -2,9 +2,12 @@ package chess;
 
 import chess.pieces.Color;
 import chess.pieces.Pawn;
+import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static utils.StringUtils.*;
 
 public class Board {
 
@@ -57,14 +60,14 @@ public class Board {
     public String getBoard() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(BLANK_ROW).append('\n');
-        sb.append(getBlackPawnsResult()).append('\n');
-        sb.append(BLANK_ROW).append('\n');
-        sb.append(BLANK_ROW).append('\n');
-        sb.append(BLANK_ROW).append('\n');
-        sb.append(BLANK_ROW).append('\n');
-        sb.append(getWhitePawnsResult()).append('\n');
-        sb.append(BLANK_ROW).append('\n');
+        sb.append(appendNewLine(BLANK_ROW));
+        sb.append(getBlackPawnsResult());
+        sb.append(appendNewLine(BLANK_ROW));
+        sb.append(appendNewLine(BLANK_ROW));
+        sb.append(appendNewLine(BLANK_ROW));
+        sb.append(appendNewLine(BLANK_ROW));
+        sb.append(getWhitePawnsResult());
+        sb.append(appendNewLine(BLANK_ROW));
 
         return sb.toString();
     }
