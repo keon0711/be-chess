@@ -16,55 +16,55 @@ class PieceTest {
     class CreatePiece {
         @Test
         void createBlackKnight() {
-            verifyPiece(Piece.createBlackKnight(), Piece.BLACK_KNIGHT_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackKnight(), Piece.BLACK_KNIGHT_REPRESENTATION);
         }
 
         @Test
         void createWhiteKnight() {
-            verifyPiece(Piece.createWhiteKnight(), Piece.WHITE_KNIGHT_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteKnight(), Piece.WHITE_KNIGHT_REPRESENTATION);
         }
 
         @Test
         void createBlackRook() {
-            verifyPiece(Piece.createBlackRook(), Piece.BLACK_ROOK_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackRook(), Piece.BLACK_ROOK_REPRESENTATION);
         }
 
         @Test
         void createWhiteRook() {
-            verifyPiece(Piece.createWhiteRook(), Piece.WHITE_ROOK_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteRook(), Piece.WHITE_ROOK_REPRESENTATION);
         }
 
         @Test
         void createBlackBishop() {
-            verifyPiece(Piece.createBlackBishop(), Piece.BLACK_BISHOP_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackBishop(), Piece.BLACK_BISHOP_REPRESENTATION);
         }
 
         @Test
         void createWhiteBishop() {
-            verifyPiece(Piece.createWhiteBishop(), Piece.WHITE_BISHOP_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteBishop(), Piece.WHITE_BISHOP_REPRESENTATION);
         }
 
         @Test
         void createBlackQueen() {
-            verifyPiece(Piece.createBlackQueen(), Piece.BLACK_QUEEN_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackQueen(), Piece.BLACK_QUEEN_REPRESENTATION);
         }
 
         @Test
         void createWhiteQueen() {
-            verifyPiece(Piece.createWhiteQueen(), Piece.WHITE_QUEEN_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteQueen(), Piece.WHITE_QUEEN_REPRESENTATION);
         }
 
         @Test
         void createBlackKing() {
-            verifyPiece(Piece.createBlackKing(), Piece.BLACK_KING_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackKing(), Piece.BLACK_KING_REPRESENTATION);
         }
 
         @Test
         void createWhiteKing() {
-            verifyPiece(Piece.createWhiteKing(), Piece.WHITE_KING_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteKing(), Piece.WHITE_KING_REPRESENTATION);
         }
 
-        private void verifyPiece(final Piece piece, final char representation) {
+        private void verifyPieceRepresentation(final Piece piece, final char representation) {
             assertThat(piece.getRepresentation()).isEqualTo(representation);
         }
     }
@@ -100,4 +100,5 @@ class PieceTest {
             assertThat(pieces).allMatch(Piece::isWhite);
         }
     }
+
 }
