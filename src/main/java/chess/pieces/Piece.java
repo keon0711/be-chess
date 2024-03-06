@@ -20,55 +20,63 @@ public class Piece {
     }
 
     public static Piece createBlackPawn() {
-        return of(PAWN, BLACK, Character.toUpperCase(PAWN.representation));
+        return createBlack(PAWN);
     }
 
     public static Piece createWhitePawn() {
-        return of(PAWN, WHITE, PAWN.representation);
+        return createWhite(PAWN);
     }
 
     public static Piece createBlackKnight() {
-        return of(KNIGHT, BLACK, Character.toUpperCase(KNIGHT.representation));
+        return createBlack(KNIGHT);
     }
 
     public static Piece createWhiteKnight() {
-        return of(KNIGHT, WHITE, KNIGHT.representation);
+        return createWhite(KNIGHT);
     }
 
     public static Piece createBlackRook() {
-        return of(ROOK, BLACK, Character.toUpperCase(ROOK.representation));
+        return createBlack(ROOK);
     }
 
     public static Piece createWhiteRook() {
-        return of(ROOK, WHITE, ROOK.representation);
+        return createWhite(ROOK);
     }
 
     public static Piece createBlackBishop() {
-        return of(BISHOP, BLACK, Character.toUpperCase(BISHOP.representation));
+        return createBlack(BISHOP);
     }
 
     public static Piece createWhiteBishop() {
-        return of(BISHOP, WHITE, BISHOP.representation);
+        return createWhite(BISHOP);
     }
 
     public static Piece createBlackQueen() {
-        return of(QUEEN, BLACK, Character.toUpperCase(QUEEN.representation));
+        return createBlack(QUEEN);
     }
 
     public static Piece createWhiteQueen() {
-        return of(QUEEN, WHITE, QUEEN.representation);
+        return createWhite(QUEEN);
     }
 
     public static Piece createBlackKing() {
-        return of(KING, BLACK, Character.toUpperCase(KING.representation));
+        return createBlack(KING);
     }
 
     public static Piece createWhiteKing() {
-        return of(KING, WHITE, KING.representation);
+        return createWhite(KING);
     }
 
     public static Piece createBlank() {
         return of(NO_PIECE, NOCOLOR, NO_PIECE.representation);
+    }
+
+    private static Piece createWhite(Type type) {
+        return of(type, WHITE, type.representation);
+    }
+
+    private static Piece createBlack(Type type) {
+        return of(type, BLACK, Character.toUpperCase(type.representation));
     }
 
     public Color getColor() {
