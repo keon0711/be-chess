@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static chess.pieces.Piece.Type.PAWN;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PawnTest {
@@ -30,7 +31,7 @@ public class PawnTest {
         @Test
         @DisplayName("흰색 폰 심볼을 가져야한다.")
         void whiteRepresentation() {
-            verifyPawnRepresentation(whitePawn, Piece.WHITE_PAWN_REPRESENTATION);
+            verifyPawnRepresentation(whitePawn, PAWN.getRepresentation());
         }
     }
 
@@ -47,14 +48,14 @@ public class PawnTest {
 
         @Test
         @DisplayName("검은색이어야 한다.")
-        void whiteColor() {
+        void blackColor() {
             verifyPawnColor(blackPawn, Color.BLACK);
         }
 
         @Test
         @DisplayName("검은색 폰 심볼을 가져야한다.")
-        void whiteRepresentation() {
-            verifyPawnRepresentation(blackPawn, Piece.BLACK_PAWN_REPRESENTATION);
+        void blackRepresentation() {
+            verifyPawnRepresentation(blackPawn, Character.toUpperCase(PAWN.getRepresentation()));
         }
     }
 

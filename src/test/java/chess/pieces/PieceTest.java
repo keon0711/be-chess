@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static chess.pieces.Piece.Type.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PieceTest {
@@ -16,52 +17,52 @@ class PieceTest {
     class CreatePiece {
         @Test
         void createBlackKnight() {
-            verifyPieceRepresentation(Piece.createBlackKnight(), Piece.BLACK_KNIGHT_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackKnight(), Character.toUpperCase(KNIGHT.getRepresentation()));
         }
 
         @Test
         void createWhiteKnight() {
-            verifyPieceRepresentation(Piece.createWhiteKnight(), Piece.WHITE_KNIGHT_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteKnight(), KNIGHT.getRepresentation());
         }
 
         @Test
         void createBlackRook() {
-            verifyPieceRepresentation(Piece.createBlackRook(), Piece.BLACK_ROOK_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackRook(), Character.toUpperCase(ROOK.getRepresentation()));
         }
 
         @Test
         void createWhiteRook() {
-            verifyPieceRepresentation(Piece.createWhiteRook(), Piece.WHITE_ROOK_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteRook(), ROOK.getRepresentation());
         }
 
         @Test
         void createBlackBishop() {
-            verifyPieceRepresentation(Piece.createBlackBishop(), Piece.BLACK_BISHOP_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackBishop(), Character.toUpperCase(BISHOP.getRepresentation()));
         }
 
         @Test
         void createWhiteBishop() {
-            verifyPieceRepresentation(Piece.createWhiteBishop(), Piece.WHITE_BISHOP_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteBishop(), BISHOP.getRepresentation());
         }
 
         @Test
         void createBlackQueen() {
-            verifyPieceRepresentation(Piece.createBlackQueen(), Piece.BLACK_QUEEN_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackQueen(), Character.toUpperCase(QUEEN.getRepresentation()));
         }
 
         @Test
         void createWhiteQueen() {
-            verifyPieceRepresentation(Piece.createWhiteQueen(), Piece.WHITE_QUEEN_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteQueen(), QUEEN.getRepresentation());
         }
 
         @Test
         void createBlackKing() {
-            verifyPieceRepresentation(Piece.createBlackKing(), Piece.BLACK_KING_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createBlackKing(), Character.toUpperCase(KING.getRepresentation()));
         }
 
         @Test
         void createWhiteKing() {
-            verifyPieceRepresentation(Piece.createWhiteKing(), Piece.WHITE_KING_REPRESENTATION);
+            verifyPieceRepresentation(Piece.createWhiteKing(), KING.getRepresentation());
         }
 
         private void verifyPieceRepresentation(final Piece piece, final char representation) {

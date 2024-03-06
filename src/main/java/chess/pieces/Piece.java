@@ -1,19 +1,9 @@
 package chess.pieces;
 
-public class Piece {
+import static chess.pieces.Piece.Color.*;
+import static chess.pieces.Piece.Type.*;
 
-    public static final char BLACK_PAWN_REPRESENTATION = 'P';
-    public static final char BLACK_KNIGHT_REPRESENTATION = 'N';
-    public static final char BLACK_ROOK_REPRESENTATION = 'R';
-    public static final char BLACK_BISHOP_REPRESENTATION = 'B';
-    public static final char BLACK_QUEEN_REPRESENTATION = 'Q';
-    public static final char BLACK_KING_REPRESENTATION = 'K';
-    public static final char WHITE_PAWN_REPRESENTATION = 'p';
-    public static final char WHITE_KNIGHT_REPRESENTATION = 'n';
-    public static final char WHITE_ROOK_REPRESENTATION = 'r';
-    public static final char WHITE_BISHOP_REPRESENTATION = 'b';
-    public static final char WHITE_QUEEN_REPRESENTATION = 'q';
-    public static final char WHITE_KING_REPRESENTATION = 'k';
+public class Piece {
 
     private final Type type;
     private final Color color;
@@ -30,51 +20,51 @@ public class Piece {
     }
 
     public static Piece createBlackPawn() {
-        return of(Type.PAWN, Color.BLACK, BLACK_PAWN_REPRESENTATION);
+        return of(PAWN, BLACK, Character.toUpperCase(PAWN.representation));
     }
 
     public static Piece createWhitePawn() {
-        return of(Type.PAWN, Color.WHITE, WHITE_PAWN_REPRESENTATION);
+        return of(PAWN, WHITE, PAWN.representation);
     }
 
     public static Piece createBlackKnight() {
-        return of(Type.KNIGHT, Color.BLACK, BLACK_KNIGHT_REPRESENTATION);
+        return of(KNIGHT, BLACK, Character.toUpperCase(KNIGHT.representation));
     }
 
     public static Piece createWhiteKnight() {
-        return of(Type.KNIGHT, Color.WHITE, WHITE_KNIGHT_REPRESENTATION);
+        return of(KNIGHT, WHITE, KNIGHT.representation);
     }
 
     public static Piece createBlackRook() {
-        return of(Type.ROOK, Color.BLACK, BLACK_ROOK_REPRESENTATION);
+        return of(ROOK, BLACK, Character.toUpperCase(ROOK.representation));
     }
 
     public static Piece createWhiteRook() {
-        return of(Type.ROOK, Color.WHITE, WHITE_ROOK_REPRESENTATION);
+        return of(ROOK, WHITE, ROOK.representation);
     }
 
     public static Piece createBlackBishop() {
-        return of(Type.BISHOP, Color.BLACK, BLACK_BISHOP_REPRESENTATION);
+        return of(BISHOP, BLACK, Character.toUpperCase(BISHOP.representation));
     }
 
     public static Piece createWhiteBishop() {
-        return of(Type.BISHOP, Color.WHITE, WHITE_BISHOP_REPRESENTATION);
+        return of(BISHOP, WHITE, BISHOP.representation);
     }
 
     public static Piece createBlackQueen() {
-        return of(Type.QUEEN, Color.BLACK, BLACK_QUEEN_REPRESENTATION);
+        return of(QUEEN, BLACK, Character.toUpperCase(QUEEN.representation));
     }
 
     public static Piece createWhiteQueen() {
-        return of(Type.QUEEN, Color.WHITE, WHITE_QUEEN_REPRESENTATION);
+        return of(QUEEN, WHITE, QUEEN.representation);
     }
 
     public static Piece createBlackKing() {
-        return of(Type.KING, Color.BLACK, BLACK_KING_REPRESENTATION);
+        return of(KING, BLACK, Character.toUpperCase(KING.representation));
     }
 
     public static Piece createWhiteKing() {
-        return of(Type.KING, Color.WHITE, WHITE_KING_REPRESENTATION);
+        return of(KING, WHITE, KING.representation);
     }
 
     public Color getColor() {
@@ -86,11 +76,11 @@ public class Piece {
     }
 
     public boolean isBlack() {
-        return color == Color.BLACK;
+        return color == BLACK;
     }
 
     public boolean isWhite() {
-        return color == Color.WHITE;
+        return color == WHITE;
     }
 
     public enum Color {
@@ -98,6 +88,21 @@ public class Piece {
     }
 
     public enum Type {
-        PAWN, KNIGHT, ROOK, BISHOP, QUEEN, KING
+        PAWN('p'),
+        KNIGHT('n'),
+        ROOK('r'),
+        BISHOP('b'),
+        QUEEN('q'),
+        KING('k');
+
+        private final char representation;
+
+        Type(char representation) {
+            this.representation = representation;
+        }
+
+        public char getRepresentation() {
+            return representation;
+        }
     }
 }
