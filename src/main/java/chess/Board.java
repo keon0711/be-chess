@@ -58,8 +58,8 @@ public class Board {
         whitePieces.add(Piece.createWhiteRook());
         whitePieces.add(Piece.createWhiteKnight());
         whitePieces.add(Piece.createWhiteBishop());
-        whitePieces.add(Piece.createWhiteKing());
         whitePieces.add(Piece.createWhiteQueen());
+        whitePieces.add(Piece.createWhiteKing());
         whitePieces.add(Piece.createWhiteBishop());
         whitePieces.add(Piece.createWhiteKnight());
         whitePieces.add(Piece.createWhiteRook());

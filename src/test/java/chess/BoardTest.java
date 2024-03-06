@@ -11,7 +11,7 @@ public class BoardTest {
     public static final String BLACK_PIECES_REPRESENTATION = "RNBQKBNR";
     public static final String BLACK_PAWNS_REPRESENTATION = "PPPPPPPP";
     public static final String WHITE_PAWNS_REPRESENTATION = "pppppppp";
-    public static final String WHITE_PIECES_REPRESENTATION = "rnbkqbnr";
+    public static final String WHITE_PIECES_REPRESENTATION = "rnbqkbnr";
     public static final int ALL_PIECE_COUNT = 32;
 
     Board board;
