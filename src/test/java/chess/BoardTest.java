@@ -1,6 +1,8 @@
 package chess;
 
 import chess.pieces.Piece;
+import chess.pieces.Piece.Color;
+import chess.pieces.Piece.Type;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -93,6 +95,59 @@ public class BoardTest {
                             blankRank + blankRank + blankRank + blankRank +
                             appendNewLine(WHITE_PAWNS_REPRESENTATION) +
                             appendNewLine(WHITE_PIECES_REPRESENTATION));
+        }
+
+        @Nested
+        @DisplayName("존재하는 기물 수는")
+        class PiecesCount {
+
+            @Test
+            @DisplayName("흰색 룩은 2개")
+            void countWhiteRook() {
+                int whiteRookCount = board.count(Color.WHITE, Type.ROOK);
+
+                assertThat(whiteRookCount).isEqualTo(2);
+            }
+
+            @Test
+            @DisplayName("검은색 룩은 2개")
+            void countBlackRook() {
+                int blackRookCount = board.count(Color.BLACK, Type.ROOK);
+
+                assertThat(blackRookCount).isEqualTo(2);
+            }
+
+            @Test
+            @DisplayName("검은색 퀸은 1개")
+            void countBlackQueen() {
+                int count = board.count(Color.BLACK, Type.QUEEN);
+
+                assertThat(count).isEqualTo(1);
+            }
+
+            @Test
+            @DisplayName("흰색 퀸은 1개")
+            void countWhiteQueen() {
+                int count = board.count(Color.WHITE, Type.QUEEN);
+
+                assertThat(count).isEqualTo(1);
+            }
+
+            @Test
+            @DisplayName("흰색 폰은 8개")
+            void countWhitePawn() {
+                int count = board.count(Color.WHITE, Type.PAWN);
+
+                assertThat(count).isEqualTo(8);
+            }
+
+            @Test
+            @DisplayName("흰색 나이트는 2개")
+            void countWhiteKnight() {
+                int count = board.count(Color.WHITE, Type.KNIGHT);
+
+                assertThat(count).isEqualTo(2);
+            }
         }
     }
 }

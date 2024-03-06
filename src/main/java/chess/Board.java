@@ -135,4 +135,10 @@ public class Board {
     public int pieceCount() {
         return blackPieces.size() + whitePieces.size() + pawnCount();
     }
+
+    public int count(Color color, Type type) {
+        return board.stream()
+                .mapToInt(rank -> rank.count(color,type))
+                .sum();
+    }
 }
