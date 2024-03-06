@@ -24,7 +24,7 @@ public class Board {
         blackPawns.add(pawn);
     }
 
-    public int size() {
+    public int pawnCount() {
         return blackPawns.size() + whitePawns.size();
     }
 
@@ -85,41 +85,41 @@ public class Board {
     public String getBoard() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(appendNewLine(getBlackPiecesResult()));
-        sb.append(appendNewLine(getBlackPawnsResult()));
+        sb.append(appendNewLine(getBlackPiecesRepresentation()));
+        sb.append(appendNewLine(getBlackPawnsRepresentation()));
         sb.append(appendNewLine(BLACK_RANK));
         sb.append(appendNewLine(BLACK_RANK));
         sb.append(appendNewLine(BLACK_RANK));
         sb.append(appendNewLine(BLACK_RANK));
-        sb.append(appendNewLine(getWhitePawnsResult()));
-        sb.append(appendNewLine(getWhitePiecesResult()));
+        sb.append(appendNewLine(getWhitePawnsRepresentation()));
+        sb.append(appendNewLine(getWhitePiecesRepresentation()));
 
         return sb.toString();
     }
 
-    private String getBlackPiecesResult() {
-        return getPiecesResult(blackPieces);
+    private String getBlackPiecesRepresentation() {
+        return getPiecesRepresentation(blackPieces);
     }
 
-    private String getWhitePiecesResult() {
-        return getPiecesResult(whitePieces);
+    private String getWhitePiecesRepresentation() {
+        return getPiecesRepresentation(whitePieces);
     }
 
-    public String getWhitePawnsResult() {
-        return getPiecesResult(whitePawns);
+    public String getWhitePawnsRepresentation() {
+        return getPiecesRepresentation(whitePawns);
     }
 
-    public String getBlackPawnsResult() {
-        return getPiecesResult(blackPawns);
+    public String getBlackPawnsRepresentation() {
+        return getPiecesRepresentation(blackPawns);
     }
 
-    private String getPiecesResult(List<Piece> pieces) {
+    private String getPiecesRepresentation(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
         pieces.forEach(piece -> sb.append(piece.getRepresentation()));
         return sb.toString();
     }
 
     public int pieceCount() {
-        return blackPieces.size() + whitePieces.size() + size();
+        return blackPieces.size() + whitePieces.size() + pawnCount();
     }
 }
