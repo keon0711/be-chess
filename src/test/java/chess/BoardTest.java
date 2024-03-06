@@ -50,41 +50,43 @@ public class BoardTest {
 
     @Nested
     @DisplayName("보드를 초기화하면")
-    class initBoard{
+    class initBoard {
 
         @BeforeEach
         void init() {
             board = new Board();
+            board.initialize();
         }
 
         @Test
         @DisplayName("검은색 Pawn이 생성되어야 한다.")
-        void initBlackPawns () {
-        board.initialize();
-        assertThat(board.getBlackPawnsRepresentation()).isEqualTo(BLACK_PAWNS_REPRESENTATION);
-    }
+        void initBlackPawns() {
+            assertThat(board.getBlackPawnsRepresentation()).isEqualTo(BLACK_PAWNS_REPRESENTATION);
+        }
 
         @Test
         @DisplayName("흰색 Pawn이 생성되어야 한다.")
-        void initWhitePawns () {
-        board.initialize();
-        assertThat(board.getWhitePawnsRepresentation()).isEqualTo(WHITE_PAWNS_REPRESENTATION);
-    }
+        void initWhitePawns() {
+            assertThat(board.getWhitePawnsRepresentation()).isEqualTo(WHITE_PAWNS_REPRESENTATION);
+        }
 
         @Test
         @DisplayName("결과를 출력할 수 있어야 한다.")
-        void printBoard () {
-        board.initialize();
-        System.out.println(board.getBoard());
+        void printBoard() {
+            System.out.println(board.getBoard());
+        }
+
+        @Test
+        @DisplayName("총 기물 수는 32개여야 한다.")
+        void pieceCount() {
+            assertThat(board.pieceCount()).isEqualTo(ALL_PIECE_COUNT);
         }
 
         @Test
         @DisplayName("기물들이 배치되어야 한다.")
-        public void initializedBoard() {
-            board.initialize();
-            assertThat(board.pieceCount()).isEqualTo(ALL_PIECE_COUNT);
-
+        public void placeAllPiece() {
             String blankRank = appendNewLine(Board.BLACK_RANK);
+
             assertThat(board.getBoard()).isEqualTo(
                     appendNewLine(BLACK_PIECES_REPRESENTATION) +
                             appendNewLine(BLACK_PAWNS_REPRESENTATION) +
