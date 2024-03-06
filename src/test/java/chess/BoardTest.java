@@ -1,14 +1,18 @@
 package chess;
 
 import chess.pieces.Piece;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.StringUtils.appendNewLine;
 
 public class BoardTest {
+
+    public static final String BLACK_PIECES_REPRESENTATION = "RNBQKBNR";
+    public static final String BLACK_PAWNS_REPRESENTATION = "PPPPPPPP";
+    public static final String WHITE_PAWNS_REPRESENTATION = "pppppppp";
+    public static final String WHITE_PIECES_REPRESENTATION = "rnbkqbnr";
+    public static final int ALL_PIECE_COUNT = 32;
 
     Board board;
 
@@ -41,42 +45,52 @@ public class BoardTest {
         Piece black = Piece.createBlackPawn();
         board.addBlack(black);
 
-        assertThat(board.size()).isEqualTo(2);
+        assertThat(board.pawnCount()).isEqualTo(2);
     }
 
-    @Test
-    @DisplayName("보드를 초기화하면 검은색 Pawn이 생성되어야 한다.")
-    void initBlackPawns() {
+    @Nested
+    @DisplayName("보드를 초기화하면")
+    class initBoard{
+
+        @BeforeEach
+        void init() {
+            board = new Board();
+        }
+
+        @Test
+        @DisplayName("검은색 Pawn이 생성되어야 한다.")
+        void initBlackPawns () {
         board.initialize();
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+        assertThat(board.getBlackPawnsRepresentation()).isEqualTo(BLACK_PAWNS_REPRESENTATION);
     }
 
-    @Test
-    @DisplayName("보드를 초기화하면 흰색 Pawn이 생성되어야 한다.")
-    void initWhitePawns() {
+        @Test
+        @DisplayName("흰색 Pawn이 생성되어야 한다.")
+        void initWhitePawns () {
         board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getWhitePawnsRepresentation()).isEqualTo(WHITE_PAWNS_REPRESENTATION);
     }
 
-    @Test
-    @DisplayName("보드를 초기화한 결과를 출력할 수 있어야 한다.")
-    void printBoard() {
+        @Test
+        @DisplayName("결과를 출력할 수 있어야 한다.")
+        void printBoard () {
         board.initialize();
         System.out.println(board.getBoard());
+        }
+
+        @Test
+        @DisplayName("기물들이 배치되어야 한다.")
+        public void initializedBoard() {
+            board.initialize();
+            assertThat(board.pieceCount()).isEqualTo(ALL_PIECE_COUNT);
+
+            String blankRank = appendNewLine(Board.BLACK_RANK);
+            assertThat(board.getBoard()).isEqualTo(
+                    appendNewLine(BLACK_PIECES_REPRESENTATION) +
+                            appendNewLine(BLACK_PAWNS_REPRESENTATION) +
+                            blankRank + blankRank + blankRank + blankRank +
+                            appendNewLine(WHITE_PAWNS_REPRESENTATION) +
+                            appendNewLine(WHITE_PIECES_REPRESENTATION));
+        }
     }
-
-    @Test
-    public void create() {
-        board.initialize();
-        assertThat(board.pieceCount()).isEqualTo(32);
-
-        String blankRank = appendNewLine(Board.BLACK_RANK);
-        assertThat(board.getBoard()).isEqualTo(
-                appendNewLine("RNBQKBNR") +
-                appendNewLine("PPPPPPPP") +
-                blankRank + blankRank + blankRank + blankRank +
-                appendNewLine("pppppppp") +
-                appendNewLine("rnbkqbnr"));
-    }
-
 }
