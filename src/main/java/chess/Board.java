@@ -110,14 +110,6 @@ public class Board {
                 .collect(Collectors.joining());
     }
 
-    private String getBlackPiecesRepresentation() {
-        return getPiecesRepresentation(blackPieces);
-    }
-
-    private String getWhitePiecesRepresentation() {
-        return getPiecesRepresentation(whitePieces);
-    }
-
     public String getWhitePawnsRepresentation() {
         return getPiecesRepresentation(whitePawns);
     }
