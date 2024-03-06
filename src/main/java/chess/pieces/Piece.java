@@ -95,6 +95,10 @@ public class Piece {
         return color == WHITE;
     }
 
+    public boolean isSameType(Type type) {
+        return this.type == type;
+    }
+
     public enum Color {
         BLACK, WHITE, NOCOLOR
     }

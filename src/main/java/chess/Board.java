@@ -1,16 +1,19 @@
 package chess;
 
 import chess.pieces.Piece;
+import chess.pieces.Piece.Color;
+import chess.pieces.Piece.Type;
+import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static utils.StringUtils.appendNewLine;
+import java.util.stream.Collectors;
 
 public class Board {
 
     public static final String BLACK_RANK = "........";
 
+    private final List<Rank> board = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
     private final List<Piece> blackPawns = new ArrayList<>();
     private final List<Piece> whitePieces = new ArrayList<>();
@@ -41,6 +44,16 @@ public class Board {
         initBlackPawn();
         initWhitePieces();
         initWhitePawn();
+
+        board.add(new Rank(blackPieces));
+        board.add(new Rank(blackPawns));
+        board.add(new Rank(createBlankPieces()));
+        board.add(new Rank(createBlankPieces()));
+        board.add(new Rank(createBlankPieces()));
+        board.add(new Rank(createBlankPieces()));
+        board.add(new Rank(whitePawns));
+        board.add(new Rank(whitePieces));
+
     }
 
     private void initBlackPieces() {
@@ -65,6 +78,15 @@ public class Board {
         whitePieces.add(Piece.createWhiteRook());
     }
 
+    private List<Piece> createBlankPieces() {
+        List<Piece> blankPieces = new ArrayList<>();
+
+        for (int i = 0; i < Rank.RANK_SIZE; i++) {
+            blankPieces.add(Piece.createBlank());
+        }
+        return blankPieces;
+    }
+
     private void initBlackPawn() {
         for (int i = 0; i < 8; i++) {
             addBlack(Piece.createBlackPawn());
@@ -77,24 +99,15 @@ public class Board {
         }
     }
 
-
     public void print() {
         System.out.println(getBoard());
     }
 
     public String getBoard() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(appendNewLine(getBlackPiecesRepresentation()));
-        sb.append(appendNewLine(getBlackPawnsRepresentation()));
-        sb.append(appendNewLine(BLACK_RANK));
-        sb.append(appendNewLine(BLACK_RANK));
-        sb.append(appendNewLine(BLACK_RANK));
-        sb.append(appendNewLine(BLACK_RANK));
-        sb.append(appendNewLine(getWhitePawnsRepresentation()));
-        sb.append(appendNewLine(getWhitePiecesRepresentation()));
-
-        return sb.toString();
+        return board.stream()
+                .map(Rank::toString)
+                .map(StringUtils::appendNewLine)
+                .collect(Collectors.joining());
     }
 
     private String getBlackPiecesRepresentation() {
