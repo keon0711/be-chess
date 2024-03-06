@@ -67,6 +67,10 @@ public class Piece {
         return of(KING, WHITE, KING.representation);
     }
 
+    public static Piece createBlank() {
+        return of(NO_PIECE, NOCOLOR, NO_PIECE.representation);
+    }
+
     public Color getColor() {
         return color;
     }
@@ -84,7 +88,7 @@ public class Piece {
     }
 
     public enum Color {
-        BLACK, WHITE
+        BLACK, WHITE, NOCOLOR
     }
 
     public enum Type {
@@ -93,7 +97,8 @@ public class Piece {
         ROOK('r'),
         BISHOP('b'),
         QUEEN('q'),
-        KING('k');
+        KING('k'),
+        NO_PIECE('.');
 
         private final char representation;
 
