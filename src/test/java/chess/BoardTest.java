@@ -1,45 +1,68 @@
 package chess;
 
+import chess.pieces.Color;
 import chess.pieces.Pawn;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Method;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class BoardTest {
 
-    static Board board;
+    Board board;
 
-    @BeforeAll
-    static void init() {
+    @BeforeEach
+    void init() {
         board = new Board();
     }
 
     @Test
-    @DisplayName("보드에 폰을 추가할 수 있다")
-    void create() {
-        verifyAdd(new Pawn(Pawn.WHITE_COLOR), 1);
-        verifyAdd(new Pawn(Pawn.BLACK_COLOR), 2);
+    @DisplayName("추가한 흰색 폰을 보드에서 얻을 수 있다")
+    void findWhitePawn() {
+        Pawn white = new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
+        board.addWhite(white);
+        assertThat(board.findWhitePawn(0)).isEqualTo(white);
     }
 
     @Test
-    @DisplayName("Pawn 이외의 객체를 넣으면 컴파일 에러 발생")
-    void compileErrorTest() {
-        assertThatCode(() -> {
-            Method addMethod = Board.class.getMethod("add", Pawn.class);
-            addMethod.invoke(board, new String());
-        }).isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("추가한 검은색 폰을 보드에서 얻을 수 있다")
+    void findBlackPawn() {
+        Pawn black = new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+        board.addBlack(black);
+        assertThat(board.findBlackPawn(0)).isEqualTo(black);
     }
 
+    @Test
+    @DisplayName("추가한 폰 개수를 얻을 수 있다.")
+    void getPawnsSize() {
+        Pawn white = new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
+        board.addWhite(white);
+        Pawn black = new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+        board.addBlack(black);
 
-    private void verifyAdd(Pawn pawn, int expectedSize) {
-        board.add(pawn);
-
-        assertThat(board.size()).isEqualTo(expectedSize);
-        assertThat(board.findPawn(expectedSize - 1)).isEqualTo(pawn);
+        assertThat(board.size()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("보드를 초기화하면 검은색 Pawn이 생성되어야 한다.")
+    void initBlackPawns() {
+        board.initialize();
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+    }
+
+    @Test
+    @DisplayName("보드를 초기화하면 흰색 Pawn이 생성되어야 한다.")
+    void initWhitePawns() {
+        board.initialize();
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+    }
+
+    @Test
+    @DisplayName("보드를 초기화한 결과를 출력할 수 있어야 한다.")
+    void printBoard() {
+        board.initialize();
+        System.out.println(board.getBoard());
+    }
+
 }
