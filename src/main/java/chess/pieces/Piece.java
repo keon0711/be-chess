@@ -92,4 +92,12 @@ public class Piece {
     public boolean isWhite() {
         return color == Color.WHITE;
     }
+
+    public enum Color {
+        BLACK, WHITE
+    }
+
+    public enum Type {
+        PAWN, KNIGHT, ROOK, BISHOP, QUEEN, KING
+    }
 }
