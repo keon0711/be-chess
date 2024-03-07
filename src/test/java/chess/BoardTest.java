@@ -79,11 +79,29 @@ public class BoardTest {
 
         @Test
         @DisplayName("a1에 검은색 나이트를 추가할 수 있다.")
-        void move() {
+        void moveBlackKnightToA1() {
             Position pos = Position.of("a1");
             board.move(pos, Piece.createBlackKnight());
 
             verifyPiece(board.findPieceByPosition(pos), Piece.createBlackKnight());
+        }
+
+        @Test
+        @DisplayName("c7에 흰색 비숍을 추가할 수 있다.")
+        void moveWhiteBishopToC7() {
+            Position pos = Position.of("c7");
+            board.move(pos, Piece.createWhiteBishop());
+
+            verifyPiece(board.findPieceByPosition(pos), Piece.createWhiteBishop());
+        }
+
+        @Test
+        @DisplayName("b3에 검은색 킹을 추가할 수 있다.")
+        void moveBlackKingToB3() {
+            Position pos = Position.of("b3");
+            board.move(pos, Piece.createBlackKing());
+
+            verifyPiece(board.findPieceByPosition(pos), Piece.createBlackKing());
         }
     }
 
