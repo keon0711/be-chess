@@ -181,7 +181,7 @@ public class BoardTest {
             @ValueSource(strings = {"a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2"})
             void findWhitePawnByPos(String boardPos) {
                 Position pos = Position.of(boardPos);
-                Piece piece = board.getPieceByPosition(pos);
+                Piece piece = board.findPieceByPosition(pos);
 
                 verifyPiece(piece, Piece.createWhitePawn());
             }

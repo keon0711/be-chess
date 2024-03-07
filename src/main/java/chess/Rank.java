@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 
 public class Rank {
 
-    public static final int RANK_SIZE = 8;
+    public static final int MAX_RANK_SIZE = 8;
+    public static final int MIN_RANK_SIZE = 0;
 
     private final List<Piece> rank;
 
@@ -17,7 +18,7 @@ public class Rank {
         this.rank = rank;
     }
 
-    public Piece getPieceByColumn(int column) {
+    public Piece findPieceByColumn(int column) {
         return rank.get(column);
     }
 

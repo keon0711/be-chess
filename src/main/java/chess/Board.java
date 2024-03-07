@@ -136,8 +136,8 @@ public class Board {
                 .sum();
     }
 
-    public Piece getPieceByPosition(Position position) {
+    public Piece findPieceByPosition(Position position) {
         Rank rank = board.get(position.row());
-        return rank.getPieceByColumn(position.column());
+        return rank.findPieceByColumn(position.column());
     }
 }

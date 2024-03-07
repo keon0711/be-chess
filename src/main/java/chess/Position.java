@@ -7,7 +7,7 @@ public record Position(int row, int column) {
     }
 
     private static int calcRow(String position) {
-        return Rank.RANK_SIZE - Character.getNumericValue(position.charAt(1));
+        return Rank.MAX_RANK_SIZE - Character.getNumericValue(position.charAt(1));
     }
 
     private static int calcColumn(String position) {
