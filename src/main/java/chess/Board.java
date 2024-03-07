@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 public class Board {
 
-    public static final String BLACK_RANK = "........";
+    public static final String BLANK_RANK = "........";
+    public static final int MIN_FILE_INDEX = 0;
+    public static final int MAX_FILE_INDEX = 8;
 
     private final List<Rank> board = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
@@ -81,20 +83,20 @@ public class Board {
     private List<Piece> createBlankPieces() {
         List<Piece> blankPieces = new ArrayList<>();
 
-        for (int i = 0; i < Rank.RANK_SIZE; i++) {
+        for (int i = MIN_FILE_INDEX; i < MAX_FILE_INDEX; i++) {
             blankPieces.add(Piece.createBlank());
         }
         return blankPieces;
     }
 
     private void initBlackPawn() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = MIN_FILE_INDEX; i < MAX_FILE_INDEX; i++) {
             addBlack(Piece.createBlackPawn());
         }
     }
 
     private void initWhitePawn() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = MIN_FILE_INDEX; i < MAX_FILE_INDEX; i++) {
             addWhite(Piece.createWhitePawn());
         }
     }

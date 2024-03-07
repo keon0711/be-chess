@@ -87,7 +87,7 @@ public class BoardTest {
         @Test
         @DisplayName("기물들이 배치되어야 한다.")
         public void placeAllPiece() {
-            String blankRank = appendNewLine(Board.BLACK_RANK);
+            String blankRank = appendNewLine(Board.BLANK_RANK);
 
             assertThat(board.getBoard()).isEqualTo(
                     appendNewLine(BLACK_PIECES_REPRESENTATION) +
