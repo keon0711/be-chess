@@ -17,6 +17,10 @@ public class Rank {
         this.rank = rank;
     }
 
+    public Piece getPieceByColumn(int column) {
+        return rank.get(column);
+    }
+
     @Override
     public String toString() {
         return rank.stream()

@@ -149,5 +149,28 @@ public class BoardTest {
                 assertThat(count).isEqualTo(2);
             }
         }
+
+        @Nested
+        @DisplayName("주어진 좌표에 해당하는 기물을 반환")
+        class findPieceByPosition {
+
+            @Test
+            @DisplayName("a8은 검은색 룩을 반환해야 한다.")
+            void findPieceAtA8() {
+                Position pos = Position.of("a8");
+                Piece piece = board.getPieceByPosition(pos);
+
+                assertThat(piece).usingRecursiveComparison().isEqualTo(Piece.createBlackRook());
+            }
+
+            @Test
+            @DisplayName("a2는 흰색 폰을 반환해야 한다.")
+            void findPieceAtA2() {
+                Position pos = Position.of("a2");
+                Piece piece = board.getPieceByPosition(pos);
+
+                assertThat(piece).usingRecursiveComparison().isEqualTo(Piece.createWhitePawn());
+            }
+        }
     }
 }

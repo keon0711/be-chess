@@ -135,4 +135,9 @@ public class Board {
                 .mapToInt(rank -> rank.count(color,type))
                 .sum();
     }
+
+    public Piece getPieceByPosition(Position position) {
+        Rank rank = board.get(position.row());
+        return rank.getPieceByColumn(position.column());
+    }
 }
