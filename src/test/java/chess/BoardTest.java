@@ -4,6 +4,8 @@ import chess.pieces.Piece;
 import chess.pieces.Piece.Color;
 import chess.pieces.Piece.Type;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.StringUtils.appendNewLine;
@@ -154,22 +156,38 @@ public class BoardTest {
         @DisplayName("주어진 좌표에 해당하는 기물을 반환")
         class findPieceByPosition {
 
-            @Test
-            @DisplayName("a8은 검은색 룩을 반환해야 한다.")
-            void findPieceAtA8() {
-                Position pos = Position.of("a8");
+            @ParameterizedTest
+            @DisplayName("a8, h8은 검은색 룩을 반환해야 한다.")
+            @ValueSource(strings = {"a8, h8"})
+            void findBlackRookByPos(String boardPos) {
+                Position pos = Position.of(boardPos);
                 Piece piece = board.getPieceByPosition(pos);
 
-                assertThat(piece).usingRecursiveComparison().isEqualTo(Piece.createBlackRook());
+                verifyPiece(piece, Piece.createBlackRook());
             }
 
-            @Test
-            @DisplayName("a2는 흰색 폰을 반환해야 한다.")
-            void findPieceAtA2() {
-                Position pos = Position.of("a2");
+            @ParameterizedTest
+            @DisplayName("a1, h1은 흰색 룩을 반환해야 한다.")
+            @ValueSource(strings = {"a1", "h1"})
+            void findWhiteRook(String boardPos) {
+                Position pos = Position.of(boardPos);
                 Piece piece = board.getPieceByPosition(pos);
 
-                assertThat(piece).usingRecursiveComparison().isEqualTo(Piece.createWhitePawn());
+                verifyPiece(piece, Piece.createWhiteRook());
+            }
+
+            @ParameterizedTest
+            @DisplayName("a2, b2, c2, d2, e2, f2, g2, h2는 흰색 폰을 반환해야 한다.")
+            @ValueSource(strings = {"a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2"})
+            void findWhitePawnByPos(String boardPos) {
+                Position pos = Position.of(boardPos);
+                Piece piece = board.getPieceByPosition(pos);
+
+                verifyPiece(piece, Piece.createWhitePawn());
+            }
+
+            private static void verifyPiece(Piece actualPiece, Piece expectedPiece) {
+                assertThat(actualPiece).usingRecursiveComparison().isEqualTo(expectedPiece);
             }
         }
     }
