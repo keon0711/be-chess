@@ -53,8 +53,43 @@ public class BoardTest {
     }
 
     @Nested
+    @DisplayName("빈 보드는")
+    class EmptyBoard {
+
+        private static final String BLANK_BOARD = appendNewLine(Board.BLANK_RANK) +
+                appendNewLine(Board.BLANK_RANK) +
+                appendNewLine(Board.BLANK_RANK) +
+                appendNewLine(Board.BLANK_RANK) +
+                appendNewLine(Board.BLANK_RANK) +
+                appendNewLine(Board.BLANK_RANK) +
+                appendNewLine(Board.BLANK_RANK) +
+                appendNewLine(Board.BLANK_RANK);
+
+        @BeforeEach
+        void init() {
+            board.initialize();
+            board.clear();
+        }
+
+        @Test
+        @DisplayName("빈 기물로 차있어야 한다.")
+        void boardIsFilledWithBlankPieces() {
+            assertThat(board.getBoard()).isEqualTo(BLANK_BOARD);
+        }
+
+        @Test
+        @DisplayName("a1에 검은색 나이트를 추가할 수 있다.")
+        void move() {
+            Position pos = Position.of("a1");
+            board.move(pos, Piece.createBlackKnight());
+
+            verifyPiece(board.findPieceByPosition(pos), Piece.createBlackKnight());
+        }
+    }
+
+    @Nested
     @DisplayName("보드를 초기화하면")
-    class initBoard {
+    class InitBoard {
 
         @BeforeEach
         void init() {
@@ -91,12 +126,7 @@ public class BoardTest {
         public void placeAllPiece() {
             String blankRank = appendNewLine(Board.BLANK_RANK);
 
-            assertThat(board.getBoard()).isEqualTo(
-                    appendNewLine(BLACK_PIECES_REPRESENTATION) +
-                            appendNewLine(BLACK_PAWNS_REPRESENTATION) +
-                            blankRank + blankRank + blankRank + blankRank +
-                            appendNewLine(WHITE_PAWNS_REPRESENTATION) +
-                            appendNewLine(WHITE_PIECES_REPRESENTATION));
+            assertThat(board.getBoard()).isEqualTo(appendNewLine(BLACK_PIECES_REPRESENTATION) + appendNewLine(BLACK_PAWNS_REPRESENTATION) + blankRank + blankRank + blankRank + blankRank + appendNewLine(WHITE_PAWNS_REPRESENTATION) + appendNewLine(WHITE_PIECES_REPRESENTATION));
         }
 
         @Nested
@@ -161,7 +191,7 @@ public class BoardTest {
             @ValueSource(strings = {"a8, h8"})
             void findBlackRookByPos(String boardPos) {
                 Position pos = Position.of(boardPos);
-                Piece piece = board.getPieceByPosition(pos);
+                Piece piece = board.findPieceByPosition(pos);
 
                 verifyPiece(piece, Piece.createBlackRook());
             }
@@ -171,7 +201,7 @@ public class BoardTest {
             @ValueSource(strings = {"a1", "h1"})
             void findWhiteRook(String boardPos) {
                 Position pos = Position.of(boardPos);
-                Piece piece = board.getPieceByPosition(pos);
+                Piece piece = board.findPieceByPosition(pos);
 
                 verifyPiece(piece, Piece.createWhiteRook());
             }
@@ -186,9 +216,11 @@ public class BoardTest {
                 verifyPiece(piece, Piece.createWhitePawn());
             }
 
-            private static void verifyPiece(Piece actualPiece, Piece expectedPiece) {
-                assertThat(actualPiece).usingRecursiveComparison().isEqualTo(expectedPiece);
-            }
+
         }
+    }
+
+    private static void verifyPiece(Piece actualPiece, Piece expectedPiece) {
+        assertThat(actualPiece).usingRecursiveComparison().isEqualTo(expectedPiece);
     }
 }

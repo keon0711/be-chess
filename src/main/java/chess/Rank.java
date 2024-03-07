@@ -36,4 +36,14 @@ public class Rank {
                 .filter(piece -> piece.isSameType(type))
                 .count();
     }
+
+    public void clear() {
+        for (int i = MIN_RANK_SIZE; i < MAX_RANK_SIZE; i++) {
+            rank.set(i, Piece.createBlank());
+        }
+    }
+
+    public void move(int column, Piece piece) {
+        rank.set(column, piece);
+    }
 }

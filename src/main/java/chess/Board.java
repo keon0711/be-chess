@@ -140,4 +140,13 @@ public class Board {
         Rank rank = board.get(position.row());
         return rank.findPieceByColumn(position.column());
     }
+
+    public void clear() {
+        board.forEach(Rank::clear);
+    }
+
+    public void move(Position position, Piece piece) {
+        Rank rank = board.get(position.row());
+        rank.move(position.column(), piece);
+    }
 }
