@@ -6,6 +6,8 @@ import chess.pieces.Piece.Type;
 import utils.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -148,5 +150,19 @@ public class Board {
         List<Piece> pieces = new ArrayList<>();
         board.forEach(rank -> pieces.add(rank.findPieceByColumn(fileIndex)));
         return pieces;
+    }
+
+    public List<Piece> sortedPiecesByColor(Color color) {
+        List<Piece> allPiecesByColor = getAllPiecesByColor(color);
+        allPiecesByColor.sort(Comparator.comparing(Piece::getDefaultPoint));
+        return allPiecesByColor;
+
+    }
+
+    private List<Piece> getAllPiecesByColor(Color color) {
+        return board.stream()
+                .map(rank -> rank.getPieceByColor(color))
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 }

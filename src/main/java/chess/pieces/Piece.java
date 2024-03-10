@@ -143,6 +143,10 @@ public class Piece {
         return this.color == color;
     }
 
+    public double getDefaultPoint() {
+        return type.getDefaultPoint();
+    }
+
     public enum Color {
         BLACK, WHITE, NOCOLOR
     }
