@@ -16,49 +16,21 @@ public class Board {
     public static final int MAX_FILE_INDEX = 8;
 
     private final List<Rank> board = new ArrayList<>();
-    private final List<Piece> blackPieces = new ArrayList<>();
-    private final List<Piece> blackPawns = new ArrayList<>();
-    private final List<Piece> whitePieces = new ArrayList<>();
-    private final List<Piece> whitePawns = new ArrayList<>();
-
-    public void addWhite(Piece pawn) {
-        whitePawns.add(pawn);
-    }
-
-    public void addBlack(Piece pawn) {
-        blackPawns.add(pawn);
-    }
-
-    public int pawnCount() {
-        return blackPawns.size() + whitePawns.size();
-    }
-
-    public Piece findWhitePawn(int index) {
-        return whitePawns.get(index);
-    }
-
-    public Piece findBlackPawn(int index) {
-        return blackPawns.get(index);
-    }
 
     public void initialize() {
-        initBlackPieces();
-        initBlackPawn();
-        initWhitePieces();
-        initWhitePawn();
-
-        board.add(new Rank(blackPieces));
-        board.add(new Rank(blackPawns));
+        board.add(new Rank(createBlackPieces()));
+        board.add(new Rank(createBlackPawns()));
         board.add(new Rank(createBlankPieces()));
         board.add(new Rank(createBlankPieces()));
         board.add(new Rank(createBlankPieces()));
         board.add(new Rank(createBlankPieces()));
-        board.add(new Rank(whitePawns));
-        board.add(new Rank(whitePieces));
-
+        board.add(new Rank(createWhitePawns()));
+        board.add(new Rank(createWhitePieces()));
     }
 
-    private void initBlackPieces() {
+    private List<Piece> createBlackPieces() {
+        List<Piece> blackPieces = new ArrayList<>();
+
         blackPieces.add(Piece.createBlackRook());
         blackPieces.add(Piece.createBlackKnight());
         blackPieces.add(Piece.createBlackBishop());
@@ -67,9 +39,14 @@ public class Board {
         blackPieces.add(Piece.createBlackBishop());
         blackPieces.add(Piece.createBlackKnight());
         blackPieces.add(Piece.createBlackRook());
+
+        return blackPieces
+                ;
     }
 
-    private void initWhitePieces() {
+    private List<Piece> createWhitePieces() {
+        List<Piece> whitePieces = new ArrayList<>();
+
         whitePieces.add(Piece.createWhiteRook());
         whitePieces.add(Piece.createWhiteKnight());
         whitePieces.add(Piece.createWhiteBishop());
@@ -78,6 +55,8 @@ public class Board {
         whitePieces.add(Piece.createWhiteBishop());
         whitePieces.add(Piece.createWhiteKnight());
         whitePieces.add(Piece.createWhiteRook());
+
+        return whitePieces;
     }
 
     private List<Piece> createBlankPieces() {
@@ -89,16 +68,20 @@ public class Board {
         return blankPieces;
     }
 
-    private void initBlackPawn() {
+    private List<Piece> createBlackPawns() {
+        List<Piece> blackPawns = new ArrayList<>();
         for (int i = MIN_FILE_INDEX; i < MAX_FILE_INDEX; i++) {
-            addBlack(Piece.createBlackPawn());
+            blackPawns.add(Piece.createBlackPawn());
         }
+        return blackPawns;
     }
 
-    private void initWhitePawn() {
+    private List<Piece> createWhitePawns() {
+        List<Piece> whitePawns = new ArrayList<>();
         for (int i = MIN_FILE_INDEX; i < MAX_FILE_INDEX; i++) {
-            addWhite(Piece.createWhitePawn());
+            whitePawns.add(Piece.createWhitePawn());
         }
+        return whitePawns;
     }
 
     public void print() {
@@ -110,24 +93,6 @@ public class Board {
                 .map(Rank::toString)
                 .map(StringUtils::appendNewLine)
                 .collect(Collectors.joining());
-    }
-
-    public String getWhitePawnsRepresentation() {
-        return getPiecesRepresentation(whitePawns);
-    }
-
-    public String getBlackPawnsRepresentation() {
-        return getPiecesRepresentation(blackPawns);
-    }
-
-    private String getPiecesRepresentation(List<Piece> pieces) {
-        StringBuilder sb = new StringBuilder();
-        pieces.forEach(piece -> sb.append(piece.getRepresentation()));
-        return sb.toString();
-    }
-
-    public int pieceCount() {
-        return blackPieces.size() + whitePieces.size() + pawnCount();
     }
 
     public int count(Color color, Type type) {
@@ -148,5 +113,40 @@ public class Board {
     public void move(Position position, Piece piece) {
         Rank rank = board.get(position.row());
         rank.move(position.column(), piece);
+    }
+
+    public double calculateBlackScore() {
+        return calculateScore(Color.BLACK);
+    }
+
+    public double calculateWhiteScore() {
+        return calculateScore(Color.WHITE);
+    }
+
+    private double calculateScore(Color color) {
+        // 색깔 인자 추가해서 색깔별 점수 계산
+        double totalScore = 0;
+
+        for (int i = MIN_FILE_INDEX; i < MAX_FILE_INDEX; i++) {
+            List<Piece> pieces = getPiecesInFile(i);
+            totalScore += getFileScore(color, pieces);
+        }
+        return totalScore;
+    }
+
+    private static double getFileScore(Color color, List<Piece> pieces) {
+        double fileScore = 0;
+
+        for (Piece piece : pieces) {
+            if (piece.isSameColor(color))
+                fileScore += piece.getPoint(pieces);
+        }
+        return fileScore;
+    }
+
+    private List<Piece> getPiecesInFile(int fileIndex) {
+        List<Piece> pieces = new ArrayList<>();
+        board.forEach(rank -> pieces.add(rank.findPieceByColumn(fileIndex)));
+        return pieces;
     }
 }

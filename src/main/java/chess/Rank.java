@@ -4,6 +4,7 @@ import chess.pieces.Piece;
 import chess.pieces.Piece.Color;
 import chess.pieces.Piece.Type;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,4 +47,13 @@ public class Rank {
     public void move(int column, Piece piece) {
         rank.set(column, piece);
     }
+
+    public double calculateScore(Color color) {
+        List<Piece> pieces = new ArrayList<>();
+        return rank.stream()
+                .filter(piece -> piece.getColor() == color)
+                .mapToDouble(piece -> piece.getPoint(pieces))
+                .sum();
+    }
+
 }

@@ -25,32 +25,6 @@ public class BoardTest {
         board = new Board();
     }
 
-    @Test
-    @DisplayName("추가한 흰색 폰을 보드에서 얻을 수 있다")
-    void findWhitePawn() {
-        Piece white = Piece.createWhitePawn();
-        board.addWhite(white);
-        assertThat(board.findWhitePawn(0)).isEqualTo(white);
-    }
-
-    @Test
-    @DisplayName("추가한 검은색 폰을 보드에서 얻을 수 있다")
-    void findBlackPawn() {
-        Piece black = Piece.createBlackPawn();
-        board.addBlack(black);
-        assertThat(board.findBlackPawn(0)).isEqualTo(black);
-    }
-
-    @Test
-    @DisplayName("추가한 폰 개수를 얻을 수 있다.")
-    void getPawnsSize() {
-        Piece white = Piece.createWhitePawn();
-        board.addWhite(white);
-        Piece black = Piece.createBlackPawn();
-        board.addBlack(black);
-
-        assertThat(board.pawnCount()).isEqualTo(2);
-    }
 
     @Nested
     @DisplayName("빈 보드는")
@@ -103,6 +77,18 @@ public class BoardTest {
 
             verifyPiece(board.findPieceByPosition(pos), Piece.createBlackKing());
         }
+
+        @Test
+        @DisplayName("룩, 나이트, 비숍, 퀸을 하나씩 추가하면 19.5점이다")
+        void score_should_be_19_and_half() {
+            board.move(Position.of("a1"), Piece.createBlackQueen());
+            board.move(Position.of("a2"), Piece.createBlackBishop());
+            board.move(Position.of("a3"), Piece.createBlackKnight());
+            board.move(Position.of("a4"), Piece.createBlackRook());
+
+            double blackScore = board.calculateBlackScore();
+            assertThat(blackScore).isEqualTo(19.5);
+        }
     }
 
     @Nested
@@ -116,27 +102,9 @@ public class BoardTest {
         }
 
         @Test
-        @DisplayName("검은색 Pawn이 생성되어야 한다.")
-        void initBlackPawns() {
-            assertThat(board.getBlackPawnsRepresentation()).isEqualTo(BLACK_PAWNS_REPRESENTATION);
-        }
-
-        @Test
-        @DisplayName("흰색 Pawn이 생성되어야 한다.")
-        void initWhitePawns() {
-            assertThat(board.getWhitePawnsRepresentation()).isEqualTo(WHITE_PAWNS_REPRESENTATION);
-        }
-
-        @Test
         @DisplayName("결과를 출력할 수 있어야 한다.")
         void printBoard() {
             System.out.println(board.getBoard());
-        }
-
-        @Test
-        @DisplayName("총 기물 수는 32개여야 한다.")
-        void pieceCount() {
-            assertThat(board.pieceCount()).isEqualTo(ALL_PIECE_COUNT);
         }
 
         @Test
@@ -233,8 +201,18 @@ public class BoardTest {
 
                 verifyPiece(piece, Piece.createWhitePawn());
             }
+        }
 
+        @Test
+        @DisplayName("흰색 점수는 38점이다")
+        void whiteScoreShouldBe38() {
+            assertThat(board.calculateWhiteScore()).isEqualTo(38);
+        }
 
+        @Test
+        @DisplayName("흰색 점수는 38점이다")
+        void blackScoreShouldBe38() {
+            assertThat(board.calculateBlackScore()).isEqualTo(38);
         }
     }
 
